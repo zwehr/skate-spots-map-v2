@@ -1,7 +1,10 @@
+import Navbar from "@/components/Navbar";
+
 export default function MapMain() {
   return (
     <>
-      <h1>Map</h1>
+      <Navbar />
+      <h1 className="text-center">Map</h1>
     </>
   )
 }

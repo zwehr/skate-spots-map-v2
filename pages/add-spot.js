@@ -1,7 +1,10 @@
+import Navbar from "@/components/Navbar";
+
 export default function AddSpot() {
   return (
     <>
-      <h1>Add Spot</h1>
+      <Navbar />
+      <h1 className="text-center">Add Spot</h1>
     </>
   )
 }
