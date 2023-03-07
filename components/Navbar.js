@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { useState } from 'react';
-import { MdOutlineSkateboarding } from 'react-icons/md';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import Link from "next/link";
+import { useState } from "react";
+import { MdOutlineSkateboarding } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Navbar() {
-  const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true)
+  const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true);
 
   return (
     <nav className="bg-gray-100">
@@ -20,28 +20,72 @@ export default function Navbar() {
             </div>
             {/* primary nav */}
             <div className="hidden md:flex items-center space-x-1">
-              <Link href="/map-main" className="py-4 px-3 text-gray-700 hover:text-black">Map</Link>
-              <Link href="/add-spot" className="py-4 px-3 text-gray-700 hover:text-black">Add Spot</Link>
+              <Link
+                href="/map-main"
+                className="py-4 px-3 text-gray-700 hover:text-black"
+              >
+                Map
+              </Link>
+              <Link
+                href="/add-spot"
+                className="py-4 px-3 text-gray-700 hover:text-black"
+              >
+                Add Spot
+              </Link>
             </div>
           </div>
           {/* seconday nav */}
           <div className="hidden md:flex items-center space-x-1 pr-3">
-            <Link href="/login" className="py-4 px-3 text-gray-700 hover:text-black">Login</Link>
-            <Link href="/signup" className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">Sign Up</Link>
+            <Link
+              href="/login"
+              className="py-4 px-3 text-gray-700 hover:text-black"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300"
+            >
+              Sign Up
+            </Link>
           </div>
           {/* mobile hamburger button */}
-          <div class="md:hidden flex items-center pr-3">
-            <button onClick={() => setIsMobileMenuHidden(isMobileMenuHidden ? false : true)}><RxHamburgerMenu className="text-2xl"/></button>
+          <div className="md:hidden flex items-center pr-3">
+            <button
+              onClick={() => setIsMobileMenuHidden((prevBool) => !prevBool)}
+            >
+              <RxHamburgerMenu className="text-2xl" />
+            </button>
           </div>
         </div>
       </div>
       {/* mobile menu */}
       <div className={`md:hidden ${isMobileMenuHidden ? "hidden" : ""}`}>
-        <Link href="/map-main" className="block py-2 px-4 text-sm hover:bg-gray-200">Map</Link>
-        <Link href="/add-spot" className="block py-2 px-4 text-sm hover:bg-gray-200">Add Spot</Link>
-        <Link href="/login" className="block py-2 px-4 text-sm hover:bg-gray-200">Login</Link>
-        <Link href="/signup" className="block py-2 px-4 text-sm hover:bg-gray-200">Sign Up</Link>
+        <Link
+          href="/map-main"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
+          Map
+        </Link>
+        <Link
+          href="/add-spot"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
+          Add Spot
+        </Link>
+        <Link
+          href="/login"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
+          Login
+        </Link>
+        <Link
+          href="/signup"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
+          Sign Up
+        </Link>
       </div>
     </nav>
-  )
+  );
 }
