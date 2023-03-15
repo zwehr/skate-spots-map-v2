@@ -6,5 +6,5 @@ export default function AddSpot() {
       <Navbar />
       <h1 className="text-center">Add Spot</h1>
     </>
-  )
+  );
 }

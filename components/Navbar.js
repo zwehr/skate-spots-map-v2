@@ -27,10 +27,10 @@ export default function Navbar() {
                 Map
               </Link>
               <Link
-                href="/add-spot"
+                href="/add"
                 className="py-4 px-3 text-gray-700 hover:text-black"
               >
-                Add Spot
+                Add to Database
               </Link>
             </div>
           </div>
