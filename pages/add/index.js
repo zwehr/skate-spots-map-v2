@@ -5,7 +5,7 @@ export default function AddSelection() {
   return (
     <>
       <Navbar />
-      <h1 className="text-center">Add to Database</h1>
+      <h1>Add to Database</h1>
       <div className="flex flex-col items-center">
         <p className="text-3xl m-2">What would you like to add?</p>
         <Link

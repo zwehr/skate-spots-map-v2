@@ -4,7 +4,7 @@ export default function AddMisc() {
   return (
     <>
       <Navbar />
-      <h1 className="text-center">Add Miscellaneous</h1>
+      <h1>Add Miscellaneous</h1>
     </>
   );
 }
