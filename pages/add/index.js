@@ -1,10 +1,8 @@
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 
 export default function AddSelection() {
   return (
     <>
-      <Navbar />
       <h1>Add to Database</h1>
       <div className="flex flex-col items-center">
         <p className="text-3xl m-2">What would you like to add?</p>
