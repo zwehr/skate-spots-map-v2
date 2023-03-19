@@ -1,10 +1,11 @@
+import { useLoadScript } from "@react-google-maps/api";
 import MapFull from "@/components/maps/MapFull";
 
 export default function MapMain() {
-  return (
-    /* div container required to keep map working (interactive) with transparent navbar */
-    <div style={{ position: "fixed", top: 0, zIndex: -1 }}>
-      <MapFull />
-    </div>
-  );
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_G_MAP_KEY,
+  });
+
+  if (!isLoaded) return <div>Loading...</div>;
+  return <MapFull />;
 }

@@ -15,4 +15,9 @@
   h1 {
     @apply text-4xl sm:text-5xl md:text-6xl text-center m-4;
   }
+
+  .full-map-container {
+    width: 100%;
+    height: 100vh;
+  }
 }

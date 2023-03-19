@@ -1,16 +1,16 @@
-import Map from "react-map-gl";
+import { useMemo } from "react";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
 
 export default function MapFull() {
+  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+
   return (
-    <Map
-      initialViewState={{
-        longitude: -20,
-        latitude: 25,
-        zoom: 2,
-      }}
-      style={{ width: "100vw", height: "100vh" }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={process.env.NEXT_PUBLIC_MAP_KEY}
-    ></Map>
+    <GoogleMap
+      zoom={10}
+      center={{ lat: 44, lng: -80 }}
+      mapContainerClassName="full-map-container"
+    >
+      <MarkerF position={{ lat: 44, lng: -80 }}></MarkerF>
+    </GoogleMap>
   );
 }
