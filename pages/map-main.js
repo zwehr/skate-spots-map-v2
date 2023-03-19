@@ -7,5 +7,9 @@ export default function MapMain() {
   });
 
   if (!isLoaded) return <div>Loading...</div>;
-  return <MapFull />;
+  return (
+    <div className="fixed w-full h-full top-0 -z-10">
+      <MapFull />
+    </div>
+  );
 }
