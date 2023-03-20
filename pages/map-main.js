@@ -1,5 +1,6 @@
 import { useLoadScript } from "@react-google-maps/api";
 import MapFull from "@/components/maps/MapFull";
+import SpotList from "@/components/spots/SpotList";
 
 export default function MapMain() {
   const { isLoaded } = useLoadScript({
@@ -8,8 +9,11 @@ export default function MapMain() {
 
   if (!isLoaded) return <div>Loading...</div>;
   return (
-    <div className="fixed w-full h-full top-0 -z-10">
-      <MapFull />
+    <div>
+      <div className="overflow-hidden w-full h-200 top-15">
+        <MapFull />
+      </div>
+      <SpotList />
     </div>
   );
 }
