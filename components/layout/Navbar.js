@@ -67,11 +67,8 @@ export default function Navbar() {
         >
           Map
         </Link>
-        <Link
-          href="/add-spot"
-          className="block py-2 px-4 text-sm hover:bg-gray-200"
-        >
-          Add Spot
+        <Link href="/add" className="block py-2 px-4 text-sm hover:bg-gray-200">
+          Add to Database
         </Link>
         <Link
           href="/login"
