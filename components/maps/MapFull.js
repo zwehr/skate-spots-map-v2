@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import FindNewSpotsButton from "../buttons/FindNewSpotsButton";
+import SpotList from "../spots/SpotList";
 
 export default function MapFull() {
   const API_URL = "http://localhost:3000/spots";
@@ -90,6 +91,7 @@ export default function MapFull() {
         }}
       >
         <FindNewSpotsButton handleClick={handleFindNewSpots} />
+        <SpotList spots={spots} />
         {spots.map((spot) => (
           <MarkerF
             position={{ lat: spot.lat, lng: spot.lng }}

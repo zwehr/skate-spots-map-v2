@@ -13,7 +13,6 @@ export default function MapMain() {
       <div className="overflow-hidden w-full h-200 top-15">
         <MapFull />
       </div>
-      <SpotList />
     </div>
   );
 }
