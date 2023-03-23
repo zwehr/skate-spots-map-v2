@@ -59,7 +59,7 @@ export default function MapFull() {
       >
         {spots.map((spot) => (
           <MarkerF
-            position={{ lat: spot.lat, lng: spot.long }}
+            position={{ lat: spot.lat, lng: spot.lng }}
             onClick={() => alert(spot.name)}
           ></MarkerF>
         ))}
