@@ -1,7 +1,6 @@
 import { useLoadScript } from "@react-google-maps/api";
 import MapFull from "@/components/maps/MapFull";
 import SpotList from "@/components/spots/SpotList";
-import FindSpotButton from "@/components/buttons/FindSpotsButton";
 
 export default function MapMain() {
   const { isLoaded } = useLoadScript({
@@ -14,7 +13,6 @@ export default function MapMain() {
       <div className="overflow-hidden w-full h-200 top-15">
         <MapFull />
       </div>
-      <FindSpotButton />
       <SpotList />
     </div>
   );

@@ -1,10 +1,40 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
+import FindNewSpotsButton from "../buttons/FindNewSpotsButton";
 
 export default function MapFull() {
   const API_URL = "http://localhost:3000/spots";
   const [map, setMap] = useState(null);
   const [spots, setSpots] = useState([]);
+
+  const fetchAllSpots = async () => {
+    try {
+      const response = await fetch(API_URL);
+      const spots = await response.json();
+      setSpots(spots);
+      console.log(spots);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchSpotsInBounds = async (
+    southBound,
+    northBound,
+    westBound,
+    eastBound
+  ) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/${southBound}/${northBound}/${westBound}/${eastBound}`
+      );
+      const spots = await response.json();
+      setSpots(spots);
+      console.log(spots);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (map) {
@@ -13,22 +43,24 @@ export default function MapFull() {
   }, []);
 
   useEffect(() => {
-    const fetchSpots = async () => {
-      try {
-        const response = await fetch(API_URL);
-        const spots = await response.json();
-        setSpots(spots);
-        console.log(spots);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    (async () => await fetchSpots())();
+    (async () => await fetchAllSpots())();
   }, []);
 
   const onLoad = useCallback((map) => {
     setMap(map);
   }, []);
+
+  const handleFindNewSpots = () => {
+    const boundaries = map.getBounds().toJSON();
+    console.log("fetching based on bounds: ", boundaries);
+    (async () =>
+      await fetchSpotsInBounds(
+        boundaries.south,
+        boundaries.north,
+        boundaries.west,
+        boundaries.east
+      ))();
+  };
 
   const UiOptions = {
     zoomControlOptions: {
@@ -57,6 +89,7 @@ export default function MapFull() {
           }
         }}
       >
+        <FindNewSpotsButton handleClick={handleFindNewSpots} />
         {spots.map((spot) => (
           <MarkerF
             position={{ lat: spot.lat, lng: spot.lng }}
