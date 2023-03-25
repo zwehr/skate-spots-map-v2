@@ -1,9 +1,28 @@
+import Link from "next/link";
+
 export default function Spot(props) {
   return (
     <li>
-      <div className="m-1 p-1 border border-gray-400 rounded-md">
-        {props.spot.name}
-        <p>Description for {props.spot.name}...</p>
+      <div className="mx-1 my-4 px-3 py-2 w-auto border bg-gray-300 rounded-md border-gray-400 border-1 shadow-lg">
+        <h3>{props.spot.name}</h3>
+        <div>
+          <iframe
+            /* Default width and height are 560 and 315 respectively. */
+            width="550"
+            height="315"
+            src={props.spot.youtubeLinks[0]}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="w-[550px] py-2">
+          <p>{props.spot.description}</p>
+        </div>
+        <Link href="#" className="underline text-sky-600 hover:text-sky-900">
+          View more clips, detailed info...
+        </Link>
       </div>
     </li>
   );

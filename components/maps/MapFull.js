@@ -95,7 +95,11 @@ export default function MapFull() {
         {spots.map((spot) => (
           <MarkerF
             position={{ lat: spot.lat, lng: spot.lng }}
-            onClick={() => alert(spot.name)}
+            onClick={() =>
+              alert(
+                `${spot.name} at ${spot.lat}, ${spot.lng}. In future, clicking on spot will highlight that spot in list.`
+              )
+            }
           ></MarkerF>
         ))}
       </GoogleMap>
