@@ -1,3 +1,4 @@
+import DeletableTags from "@/components/tags/DeletableTags";
 import DeletableYoutubeLinks from "@/components/youtube/DeletableYoutubeLinks";
 import { useState } from "react";
 
@@ -9,12 +10,25 @@ export default function AddSpot() {
   const [isPremium, setIsPremium] = useState(false);
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
+  const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState("");
   const [youtubeLinks, setYoutubeLinks] = useState([]);
 
+  const handleAddTag = () => {
+    // If tag text input is empty, nothing happens
+    if (tag.length > 0) {
+      setTags((prevTags) => [...prevTags, tag.toLowerCase()]);
+      setTag("");
+    }
+  };
+
+  const handleDeleteTag = (tag) => {
+    setTags((prevTags) => prevTags.filter((prevTag) => prevTag !== tag));
+  };
+
   const handleAddYoutubeLink = () => {
-    // If text input is empty, nothing happens
+    // If youtubeLink text input is empty, nothing happens
     if (youtubeLink.length > 0) {
       setYoutubeLinks((prevLinks) => [...prevLinks, youtubeLink]);
       setYoutubeLink("");
@@ -108,14 +122,28 @@ export default function AddSpot() {
             <div>
               <input
                 type="text"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
                 className="w-1/3 mx-2 p-1 focus:outline-none"
                 placeholder="Enter a tag and click 'Add Tag'..."
               />
-              <button className="py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md">
+              <button
+                className="py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md"
+                onClick={handleAddTag}
+              >
                 Add Tag
               </button>
             </div>
           </label>
+          <div>
+            {tags.length > 0 ? (
+              <DeletableTags tags={tags} handleDelete={handleDeleteTag} />
+            ) : (
+              <p className="italic ml-5">
+                No tags added. Add one or more, and they will appear here.
+              </p>
+            )}
+          </div>
           <label htmlFor="youtube-links" className="block my-5">
             YouTube Links:
             <div>
