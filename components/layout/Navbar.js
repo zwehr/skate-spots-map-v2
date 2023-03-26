@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true);
 
   return (
-    <nav className="fixed top-0 w-full bg-gray-200 shadow-lg z-10">
+    <nav className="fixed top-0 w-full bg-gray-100 shadow-lg z-10">
       <div className="px-1 mx-auto">
         <div className="flex justify-between">
           <div className="flex space-x-4">
