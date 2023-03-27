@@ -19,7 +19,7 @@ export default function DeletableTags(props) {
     <div className="flex ml-5">
       {props.tags.map((tag) => (
         <div
-          className="flex bg-sky-200 p-1 m-1 rounded shadow-md hover:cursor-pointer"
+          className="flex bg-sky-200 p-1 mx-1 mb-1 rounded shadow-md hover:cursor-pointer"
           onMouseEnter={() => handleMouseEnter(tag)}
           onMouseLeave={handleMouseLeave}
           onClick={() => props.handleDelete(tag)}

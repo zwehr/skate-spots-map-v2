@@ -6,16 +6,26 @@ export default function AddSpot() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [lat, setLat] = useState("");
-  const [lng, setLong] = useState("");
+  const [lng, setLng] = useState("");
   const [isPremium, setIsPremium] = useState(false);
-  const [type, setType] = useState("");
-  const [status, setStatus] = useState("");
+  const [type, setType] = useState("handrail");
+  const [status, setStatus] = useState("active");
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState("");
   const [youtubeLinks, setYoutubeLinks] = useState([]);
 
-  const handleAddTag = () => {
+  const handleRadioChange = (e) => {
+    setStatus(e.target.value);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsPremium((prevBool) => !prevBool);
+  };
+
+  const handleAddTag = (e) => {
+    // Stops warning from 'required' inputs when pressing Enter to add tag
+    e.preventDefault();
     // If tag text input is empty, nothing happens
     if (tag.length > 0) {
       setTags((prevTags) => [...prevTags, tag.toLowerCase()]);
@@ -56,6 +66,9 @@ export default function AddSpot() {
               type="text"
               className="block w-1/2 ml-2 p-1 focus:outline-none"
               placeholder="Enter spot name..."
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
             />
           </label>
           <label htmlFor="description" className="block my-5">
@@ -63,6 +76,9 @@ export default function AddSpot() {
             <textarea
               className="block ml-2 p-1 border w-11/12 focus:outline-none"
               placeholder="Enter spot description..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </label>
           <label htmlFor="lat" className="block my-5">
@@ -71,6 +87,9 @@ export default function AddSpot() {
               type="text"
               className="block w-1/3 ml-2 p-1 focus:outline-none"
               placeholder="Enter latitude..."
+              value={lat}
+              onChange={(e) => setLat(e.target.value)}
+              required
             />
           </label>
           <label htmlFor="lng" className="block my-5">
@@ -79,12 +98,20 @@ export default function AddSpot() {
               type="text"
               className="block w-1/3 ml-2 p-1 focus:outline-none"
               placeholder="Enter longitude..."
+              value={lng}
+              onChange={(e) => setLng(e.target.value)}
+              required
             />
           </label>
           <label htmlFor="isPremium" className="block my-5">
             Free/Premium:
             <span className="block ml-2">
-              <input type="checkbox" className="mr-1" />
+              <input
+                type="checkbox"
+                className="mr-1"
+                checked={isPremium}
+                onChange={handleCheckboxChange}
+              />
               Check if Premium (Default is Free)
             </span>
           </label>
@@ -92,6 +119,7 @@ export default function AddSpot() {
             Type:
             <select
               value={type}
+              onChange={(e) => setType(e.target.value)}
               className="ml-2 p-1 w-1/3 focus:outline-none block"
             >
               <option value="handrail">Handrail</option>
@@ -109,11 +137,32 @@ export default function AddSpot() {
           <label htmlFor="status" className="block my-5">
             Status:
             <div className="ml-2">
-              <input type="radio" name="status" className="mr-1" />
+              <input
+                type="radio"
+                name="status"
+                value="active"
+                className="mr-1"
+                checked={status === "active"}
+                onChange={handleRadioChange}
+              />
               Active
-              <input type="radio" name="status" className="ml-4 mr-1" />
+              <input
+                type="radio"
+                name="status"
+                value="skate-stopped"
+                className="ml-4 mr-1"
+                checked={status === "skate-stopped"}
+                onChange={handleRadioChange}
+              />
               Skate-Stopped
-              <input type="radio" name="status" className="ml-4 mr-1" />
+              <input
+                type="radio"
+                name="status"
+                value="rip"
+                className="ml-4 mr-1"
+                checked={status === "rip"}
+                onChange={handleRadioChange}
+              />
               RIP
             </div>
           </label>
