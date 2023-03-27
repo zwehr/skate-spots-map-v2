@@ -15,6 +15,8 @@ export default function AddSpot() {
   const [youtubeLink, setYoutubeLink] = useState("");
   const [youtubeLinks, setYoutubeLinks] = useState([]);
 
+  const API_URL = "http://localhost:3000/spots";
+
   const handleRadioChange = (e) => {
     setStatus(e.target.value);
   };
@@ -53,6 +55,23 @@ export default function AddSpot() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const spot = {
+      name,
+      description,
+      lat,
+      lng,
+      isPremium,
+      type,
+      status,
+      tags,
+      youtubeLinks,
+    };
+
+    fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
+    }).then(() => console.log("New spot added"));
   };
 
   return (
