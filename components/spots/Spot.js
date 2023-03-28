@@ -21,7 +21,7 @@ export default function Spot(props) {
           <p>{props.spot.description}</p>
         </div>
         <Link
-          href="#"
+          href={`/spots/${props.spot._id}`}
           className="underline text-sky-700 hover:text-sky-900 hover:font-medium"
         >
           View more clips, detailed info...
