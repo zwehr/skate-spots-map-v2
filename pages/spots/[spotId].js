@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 export default function SpotById() {
+  const [videoIndex, setVideoIndex] = useState(0);
   const [spot, setSpot] = useState({
     name: "",
     description: "",
@@ -16,7 +18,21 @@ export default function SpotById() {
   const router = useRouter();
   const API_URL = "http://localhost:3000/spots";
 
-  console.log(router.query.spotId);
+  const handlePreviousVideoClick = () => {
+    if (videoIndex === 0) {
+      setVideoIndex(spot.youtubeLinks.length - 1);
+    } else {
+      setVideoIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleNextVideoClick = () => {
+    if (videoIndex === spot.youtubeLinks.length - 1) {
+      setVideoIndex(0);
+    } else {
+      setVideoIndex((prevIndex) => prevIndex + 1);
+    }
+  };
 
   const fetchSpotById = async () => {
     try {
@@ -37,16 +53,36 @@ export default function SpotById() {
   return (
     <div className="w-1/2 mx-auto">
       <h1>{spot.name}</h1>
-      <div className="w-[550px] my-5 mx-auto">
-        <iframe
-          /* Default width and height are 560 and 315 respectively. */
-          width="550"
-          height="315"
-          src={spot.youtubeLinks[0]}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+      <div className="flex my-5 mx-auto">
+        <div>
+          <button
+            className="mt-36 p-1 text-4xl bg-gray-300 rounded-full hover:bg-gray-400"
+            onClick={handlePreviousVideoClick}
+          >
+            <GrPrevious />
+          </button>
+        </div>
+        <div className="w-[550px] mx-auto text-center">
+          <iframe
+            /* Default width and height are 560 and 315 respectively. */
+            width="550"
+            height="315"
+            src={spot.youtubeLinks[videoIndex]}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+          <p>{`Video ${videoIndex + 1}/${spot.youtubeLinks.length}`}</p>
+          <p></p>
+        </div>
+        <div>
+          <button
+            className="mt-36 p-1 text-4xl bg-gray-300 rounded-full hover:bg-gray-400"
+            onClick={handleNextVideoClick}
+          >
+            <GrNext />
+          </button>
+        </div>
       </div>
       <p className="m-3">
         <span className="font-bold">Description:</span> {spot.description}
