@@ -4,33 +4,31 @@ import FindNewSpotsButton from "../buttons/FindNewSpotsButton";
 import SpotList from "../spots/SpotList";
 
 export default function MapFull() {
-  const API_URL = "http://localhost:3000/spots";
   const [map, setMap] = useState(null);
   const [spots, setSpots] = useState([]);
 
   const fetchAllSpots = async () => {
     try {
-      const response = await fetch(API_URL);
-      const spots = await response.json();
-      setSpots(spots);
-      console.log(spots);
+      const response = await fetch("/api/spots");
+      const responseObj = await response.json();
+      setSpots(responseObj.spots);
     } catch (error) {
       console.log(error);
     }
   };
 
   const fetchSpotsInBounds = async (
-    southBound,
-    northBound,
-    westBound,
-    eastBound
+    northBoundary,
+    southBoundary,
+    eastBoundary,
+    westBoundary
   ) => {
     try {
       const response = await fetch(
-        `${API_URL}/${southBound}/${northBound}/${westBound}/${eastBound}`
+        `api/spots/${northBoundary}/${southBoundary}/${eastBoundary}/${westBoundary}`
       );
-      const spots = await response.json();
-      setSpots(spots);
+      const responseObj = await response.json();
+      setSpots(responseObj.spots);
       console.log(spots);
     } catch (error) {
       console.log(error);
@@ -56,10 +54,10 @@ export default function MapFull() {
     console.log("fetching based on bounds: ", boundaries);
     (async () =>
       await fetchSpotsInBounds(
-        boundaries.south,
         boundaries.north,
-        boundaries.west,
-        boundaries.east
+        boundaries.south,
+        boundaries.east,
+        boundaries.west
       ))();
   };
 

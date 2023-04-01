@@ -16,7 +16,6 @@ export default function SpotById() {
   });
 
   const router = useRouter();
-  const API_URL = "http://localhost:3000/spots";
 
   const handlePreviousVideoClick = () => {
     if (videoIndex === 0) {
@@ -36,9 +35,9 @@ export default function SpotById() {
 
   const fetchSpotById = async () => {
     try {
-      const response = await fetch(`${API_URL}/${router.query.spotId}`);
-      const matchingSpot = await response.json();
-      setSpot(matchingSpot);
+      const response = await fetch(`/api/spots/${router.query.spotId}`);
+      const matchingSpotObj = await response.json();
+      setSpot(matchingSpotObj.spot);
       console.log(matchingSpot);
     } catch (error) {
       console.log(error);

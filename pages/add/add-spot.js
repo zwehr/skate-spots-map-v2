@@ -14,8 +14,7 @@ export default function AddSpot() {
   const [tags, setTags] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState("");
   const [youtubeLinks, setYoutubeLinks] = useState([]);
-
-  const API_URL = "http://localhost:3000/spots";
+  const [images, setImages] = useState([]);
 
   const handleRadioChange = (e) => {
     setStatus(e.target.value);
@@ -39,7 +38,8 @@ export default function AddSpot() {
     setTags((prevTags) => prevTags.filter((prevTag) => prevTag !== tag));
   };
 
-  const handleAddYoutubeLink = () => {
+  const handleAddYoutubeLink = (e) => {
+    e.preventDefault();
     // If youtubeLink text input is empty, nothing happens
     if (youtubeLink.length > 0) {
       setYoutubeLinks((prevLinks) => [...prevLinks, youtubeLink]);
@@ -55,6 +55,7 @@ export default function AddSpot() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Mainly takes fields from state, but also adds created/updated timestamps set to current date/time
     const spot = {
       name,
       description,
@@ -65,13 +66,20 @@ export default function AddSpot() {
       status,
       tags,
       youtubeLinks,
+      images,
+      createdAt: new Date(Date.now()),
+      updatedAt: new Date(Date.now()),
     };
 
-    fetch(API_URL, {
+    fetch("/api/spots", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spot),
-    }).then(() => console.log("New spot added"));
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
 
   return (
