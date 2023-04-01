@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Spot(props) {
   return (
-    <li>
+    <li id={props.spot._id}>
       <div className="mx-1 my-4 px-3 py-2 w-auto border bg-sky-100 rounded border-gray-400 border-1 shadow-lg">
         <h3>{props.spot.name}</h3>
         <div>

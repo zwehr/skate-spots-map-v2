@@ -61,6 +61,13 @@ export default function MapFull() {
       ))();
   };
 
+  const handleMarkerClick = (spotId) => {
+    const matchingElement = document.getElementById(spotId);
+    if (matchingElement) {
+      matchingElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const UiOptions = {
     zoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_BOTTOM,
@@ -93,11 +100,7 @@ export default function MapFull() {
         {spots.map((spot) => (
           <MarkerF
             position={{ lat: spot.lat, lng: spot.lng }}
-            onClick={() =>
-              alert(
-                `${spot.name} at ${spot.lat}, ${spot.lng}. In future, clicking on spot will highlight that spot in list.`
-              )
-            }
+            onClick={() => handleMarkerClick(spot._id)}
           ></MarkerF>
         ))}
       </GoogleMap>
