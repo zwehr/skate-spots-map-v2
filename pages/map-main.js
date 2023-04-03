@@ -1,6 +1,5 @@
 import { useLoadScript } from "@react-google-maps/api";
 import MapFull from "@/components/maps/MapFull";
-import SpotList from "@/components/spots/SpotList";
 
 export default function MapMain() {
   const { isLoaded } = useLoadScript({

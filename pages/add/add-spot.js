@@ -59,8 +59,8 @@ export default function AddSpot() {
     const spot = {
       name,
       description,
-      lat,
-      lng,
+      lat: Number(lat),
+      lng: Number(lng),
       isPremium,
       type,
       status,

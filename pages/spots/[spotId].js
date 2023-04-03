@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GrPrevious, GrNext } from "react-icons/gr";
+import StaticTags from "@/components/tags/StaticTags";
 
 export default function SpotById() {
   const [videoIndex, setVideoIndex] = useState(0);
@@ -90,10 +91,12 @@ export default function SpotById() {
         <span className="font-bold">Type:</span>{" "}
         {spot.type.charAt(0).toUpperCase() + spot.type.slice(1)}
       </p>
-      <p className="m-3">
-        <span className="font-bold">Tags:</span>{" "}
-        {spot.tags.map((tag) => tag + " ")}
-      </p>
+      <div className="flex">
+        <p className="m-3 mr-1">
+          <span className="font-bold">Tags:</span>
+        </p>
+        <StaticTags tags={spot.tags} />
+      </div>
       <p className="m-3">
         <span className="font-bold">Status:</span>{" "}
         {spot.status.charAt(0).toUpperCase() + spot.status.slice(1)}
