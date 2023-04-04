@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
-import FindNewSpotsButton from "../buttons/FindNewSpotsButton";
+import FindNewSpotsButton from "../ui/FindNewSpotsButton";
 import SpotList from "../spots/SpotList";
 
 export default function MapFull() {
