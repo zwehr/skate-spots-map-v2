@@ -37,7 +37,6 @@ export default function SpotById() {
   };
 
   const fetchSpotById = async () => {
-    setIsLoading(true);
     try {
       const response = await fetch(`/api/spots/${router.query.spotId}`);
       const matchingSpotObj = await response.json();
