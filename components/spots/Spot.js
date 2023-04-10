@@ -7,7 +7,7 @@ export default function Spot(props) {
         <h3>{props.spot.name}</h3>
         <div>
           <iframe
-            /* Default width and height are 560 and 315 respectively. */
+            /* Youtube default width and height are 560 and 315 respectively. */
             width="550"
             height="315"
             src={props.spot.youtubeLinks[0]}

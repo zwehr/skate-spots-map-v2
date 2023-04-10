@@ -82,28 +82,33 @@ export default function MapFull() {
   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
   return (
-    <div>
-      <GoogleMap
-        options={UiOptions}
-        zoom={10}
-        center={center}
-        mapContainerClassName="w-full h-screen"
-        onLoad={onLoad}
-        onBoundsChanged={(event) => {
-          if (map) {
-            console.log(map.getBounds().toJSON());
-          }
-        }}
-      >
-        <FindNewSpotsButton handleClick={handleFindNewSpots} />
+    <div className="flex">
+      <div className="w-1/2 h-screen overflow-y-scroll">
         <SpotList spots={spots} />
-        {spots.map((spot) => (
-          <MarkerF
-            position={{ lat: spot.lat, lng: spot.lng }}
-            onClick={() => handleMarkerClick(spot._id)}
-          ></MarkerF>
-        ))}
-      </GoogleMap>
+      </div>
+      <div className="w-full">
+        <GoogleMap
+          options={UiOptions}
+          zoom={10}
+          center={center}
+          mapContainerClassName="w-full h-screen"
+          onLoad={onLoad}
+          onBoundsChanged={(event) => {
+            if (map) {
+              console.log(map.getBounds().toJSON());
+            }
+          }}
+        >
+          <FindNewSpotsButton handleClick={handleFindNewSpots} />
+          {spots.length > 0 &&
+            spots.map((spot) => (
+              <MarkerF
+                position={{ lat: spot.lat, lng: spot.lng }}
+                onClick={() => handleMarkerClick(spot._id)}
+              ></MarkerF>
+            ))}
+        </GoogleMap>
+      </div>
     </div>
   );
 }
