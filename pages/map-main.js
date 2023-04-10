@@ -8,10 +8,8 @@ export default function MapMain() {
 
   if (!isLoaded) return <div>Loading...</div>;
   return (
-    <div>
-      <div className="overflow-hidden w-full h-200 top-15">
-        <MapFull />
-      </div>
+    <div className="map-main">
+      <MapFull />
     </div>
   );
 }

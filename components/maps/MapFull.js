@@ -83,7 +83,7 @@ export default function MapFull() {
 
   return (
     <div className="flex">
-      <div className="w-1/2 h-screen overflow-y-scroll">
+      <div>
         <SpotList spots={spots} />
       </div>
       <div className="w-full">
@@ -91,7 +91,7 @@ export default function MapFull() {
           options={UiOptions}
           zoom={10}
           center={center}
-          mapContainerClassName="w-full h-screen"
+          mapContainerClassName="w-full h-full"
           onLoad={onLoad}
           onBoundsChanged={(event) => {
             if (map) {
