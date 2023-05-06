@@ -8,7 +8,7 @@ export default function Login() {
     return (
       <>
         <p>Welcome, {session.user.email}</p>
-        <button onClick={() => signOut()}></button>
+        <button onClick={() => signOut()}>Sign Out</button>
       </>
     );
   } else {
