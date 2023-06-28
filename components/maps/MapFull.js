@@ -30,7 +30,6 @@ export default function MapFull() {
         `https://skate-spots-map-v2.vercel.app/api/spots/${northBoundary}/${southBoundary}/${eastBoundary}/${westBoundary}`,
         {
           method: 'GET',
-          headers: headers,
         }
       );
       const responseObj = await response.json();
