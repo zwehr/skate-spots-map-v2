@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
-import { GoogleMap, MarkerF } from "@react-google-maps/api";
-import FindNewSpotsButton from "../ui/FindNewSpotsButton";
-import SpotList from "../spots/SpotList";
+import { useState, useCallback, useEffect, useMemo } from 'react';
+import { GoogleMap, MarkerF } from '@react-google-maps/api';
+import FindNewSpotsButton from '../ui/FindNewSpotsButton';
+import SpotList from '../spots/SpotList';
 
 export default function MapFull() {
   const [map, setMap] = useState(null);
@@ -9,7 +9,7 @@ export default function MapFull() {
 
   const fetchAllSpots = async () => {
     try {
-      const response = await fetch("/api/spots");
+      const response = await fetch('/api/spots');
       const responseObj = await response.json();
       setSpots(responseObj.spots);
     } catch (error) {
@@ -39,7 +39,7 @@ export default function MapFull() {
     if (map) {
       const bounds = new window.google.maps.LatLngBounds();
     }
-  }, []);
+  }, [map]);
 
   useEffect(() => {
     (async () => await fetchAllSpots())();
@@ -51,7 +51,7 @@ export default function MapFull() {
 
   const handleFindNewSpots = () => {
     const boundaries = map.getBounds().toJSON();
-    console.log("fetching based on bounds: ", boundaries);
+    console.log('fetching based on bounds: ', boundaries);
     (async () =>
       await fetchSpotsInBounds(
         boundaries.north,
@@ -64,7 +64,7 @@ export default function MapFull() {
   const handleMarkerClick = (spotId) => {
     const matchingElement = document.getElementById(spotId);
     if (matchingElement) {
-      matchingElement.scrollIntoView({ behavior: "smooth" });
+      matchingElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -82,16 +82,16 @@ export default function MapFull() {
   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
   return (
-    <div className="flex">
+    <div className='flex'>
       <div>
         <SpotList spots={spots} />
       </div>
-      <div className="w-full">
+      <div className='w-full'>
         <GoogleMap
           options={UiOptions}
           zoom={10}
           center={center}
-          mapContainerClassName="w-full h-full"
+          mapContainerClassName='w-full h-full'
           onLoad={onLoad}
           onBoundsChanged={(event) => {
             if (map) {
