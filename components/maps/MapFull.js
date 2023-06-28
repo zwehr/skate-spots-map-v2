@@ -103,6 +103,7 @@ export default function MapFull() {
           {spots.length > 0 &&
             spots.map((spot) => (
               <MarkerF
+                key={spot._id}
                 position={{ lat: spot.lat, lng: spot.lng }}
                 onClick={() => handleMarkerClick(spot._id)}
               ></MarkerF>
