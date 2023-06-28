@@ -1,4 +1,4 @@
-import { connectDatabase, getDocumentsInBounds } from "@/helpers/mongodb-util";
+import { connectDatabase, getDocumentsInBounds } from '@/helpers/mongodb-util';
 
 export default async function handler(req, res) {
   const { slug } = req.query;
@@ -12,23 +12,24 @@ export default async function handler(req, res) {
   try {
     client = await connectDatabase();
   } catch (error) {
-    res.status(500).json({ message: "Failed to connect to database." });
+    res.status(500).json({ message: 'Failed to connect to database.' });
     return;
   }
 
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     try {
       const documents = await getDocumentsInBounds(
         client,
-        "spots",
+        'spots',
         northBoundary,
         southBoundary,
         eastBoundary,
         westBoundary
       );
+      console.log('spots documents are: ', documents);
       res.status(200).json({ spots: documents });
     } catch (error) {
-      res.status(500).json({ message: "Failed to GET spots." });
+      res.status(500).json({ message: 'Failed to GET spots.' });
     }
   }
 }
