@@ -45,8 +45,8 @@ export async function getDocumentsInBounds(
   const documents = await db
     .collection(collection)
     .find({
-      lat: { $lt: Number(northBoundary), $gt: Number(southBoundary) },
-      lng: { $lt: Number(eastBoundary), $gt: Number(westBoundary) },
+      lat: { $lt: 41, $gt: 39 },
+      lng: { $lt: -120, $gt: 0 },
     })
     .toArray();
 
