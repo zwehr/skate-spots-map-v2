@@ -27,7 +27,11 @@ export default function MapFull() {
   ) => {
     try {
       const response = await fetch(
-        `https://skate-spots-map-v2.vercel.app/api/spots/${northBoundary}/${southBoundary}/${eastBoundary}/${westBoundary}`
+        `https://skate-spots-map-v2.vercel.app/api/spots/${northBoundary}/${southBoundary}/${eastBoundary}/${westBoundary}`,
+        {
+          method: 'GET',
+          headers: headers,
+        }
       );
       const responseObj = await response.json();
       setSpots(responseObj.spots);

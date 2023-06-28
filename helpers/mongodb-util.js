@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient, ObjectId } from 'mongodb';
 
 export async function connectDatabase() {
   const client = await MongoClient.connect(process.env.MONGODB_URI);
