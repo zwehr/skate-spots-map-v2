@@ -1,18 +1,18 @@
-import DeletableTags from "@/components/tags/DeletableTags";
-import DeletableYoutubeLinks from "@/components/youtube/DeletableYoutubeLinks";
-import { useState } from "react";
+import DeletableTags from '@/components/tags/DeletableTags';
+import DeletableYoutubeLinks from '@/components/youtube/DeletableYoutubeLinks';
+import { useState } from 'react';
 
 export default function AddSpot() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
   const [isPremium, setIsPremium] = useState(false);
-  const [type, setType] = useState("handrail");
-  const [status, setStatus] = useState("active");
-  const [tag, setTag] = useState("");
+  const [type, setType] = useState('handrail');
+  const [status, setStatus] = useState('active');
+  const [tag, setTag] = useState('');
   const [tags, setTags] = useState([]);
-  const [youtubeLink, setYoutubeLink] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState('');
   const [youtubeLinks, setYoutubeLinks] = useState([]);
   const [images, setImages] = useState([]);
 
@@ -30,7 +30,7 @@ export default function AddSpot() {
     // If tag text input is empty, nothing happens
     if (tag.length > 0) {
       setTags((prevTags) => [...prevTags, tag.toLowerCase()]);
-      setTag("");
+      setTag('');
     }
   };
 
@@ -43,7 +43,7 @@ export default function AddSpot() {
     // If youtubeLink text input is empty, nothing happens
     if (youtubeLink.length > 0) {
       setYoutubeLinks((prevLinks) => [...prevLinks, youtubeLink]);
-      setYoutubeLink("");
+      setYoutubeLink('');
     }
   };
 
@@ -71,11 +71,11 @@ export default function AddSpot() {
       updatedAt: new Date(Date.now()),
     };
 
-    fetch("/api/spots", {
-      method: "POST",
+    fetch('https://skate-spots-map-v2.vercel.app/api/spots', {
+      method: 'POST',
       body: JSON.stringify(spot),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -85,126 +85,126 @@ export default function AddSpot() {
   return (
     <>
       <h1>Add Spot</h1>
-      <div className="p-3 mx-auto mb-10 w-1/2 bg-gray-200 rounded-lg shadow-lg">
+      <div className='p-3 mx-auto mb-10 w-1/2 bg-gray-200 rounded-lg shadow-lg'>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name" className="block">
+          <label htmlFor='name' className='block'>
             Name:
             <input
-              type="text"
-              className="block w-1/2 ml-2 p-1 focus:outline-none"
-              placeholder="Enter spot name..."
+              type='text'
+              className='block w-1/2 ml-2 p-1 focus:outline-none'
+              placeholder='Enter spot name...'
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </label>
-          <label htmlFor="description" className="block my-5">
+          <label htmlFor='description' className='block my-5'>
             Description:
             <textarea
-              className="block ml-2 p-1 border w-11/12 focus:outline-none"
-              placeholder="Enter spot description..."
+              className='block ml-2 p-1 border w-11/12 focus:outline-none'
+              placeholder='Enter spot description...'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </label>
-          <label htmlFor="lat" className="block my-5">
+          <label htmlFor='lat' className='block my-5'>
             Latitude:
             <input
-              type="text"
-              className="block w-1/3 ml-2 p-1 focus:outline-none"
-              placeholder="Enter latitude..."
+              type='text'
+              className='block w-1/3 ml-2 p-1 focus:outline-none'
+              placeholder='Enter latitude...'
               value={lat}
               onChange={(e) => setLat(e.target.value)}
               required
             />
           </label>
-          <label htmlFor="lng" className="block my-5">
+          <label htmlFor='lng' className='block my-5'>
             Longitude:
             <input
-              type="text"
-              className="block w-1/3 ml-2 p-1 focus:outline-none"
-              placeholder="Enter longitude..."
+              type='text'
+              className='block w-1/3 ml-2 p-1 focus:outline-none'
+              placeholder='Enter longitude...'
               value={lng}
               onChange={(e) => setLng(e.target.value)}
               required
             />
           </label>
-          <label htmlFor="isPremium" className="block my-5">
+          <label htmlFor='isPremium' className='block my-5'>
             Free/Premium:
-            <span className="block ml-2">
+            <span className='block ml-2'>
               <input
-                type="checkbox"
-                className="mr-1"
+                type='checkbox'
+                className='mr-1'
                 checked={isPremium}
                 onChange={handleCheckboxChange}
               />
               Check if Premium (Default is Free)
             </span>
           </label>
-          <label htmlFor="type" className="block my-5">
+          <label htmlFor='type' className='block my-5'>
             Type:
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="ml-2 p-1 w-1/3 focus:outline-none block"
+              className='ml-2 p-1 w-1/3 focus:outline-none block'
             >
-              <option value="handrail">Handrail</option>
-              <option value="stairs">Stairs</option>
-              <option value="gap">Gap</option>
-              <option value="ledge">Ledge</option>
-              <option value="pad">Manual Pad</option>
-              <option value="hubba">Hubba</option>
-              <option value="bank">Bank</option>
-              <option value="curb">Curb</option>
-              <option value="bump">Bump to bar, etc.</option>
-              <option value="misc">Misc</option>
+              <option value='handrail'>Handrail</option>
+              <option value='stairs'>Stairs</option>
+              <option value='gap'>Gap</option>
+              <option value='ledge'>Ledge</option>
+              <option value='pad'>Manual Pad</option>
+              <option value='hubba'>Hubba</option>
+              <option value='bank'>Bank</option>
+              <option value='curb'>Curb</option>
+              <option value='bump'>Bump to bar, etc.</option>
+              <option value='misc'>Misc</option>
             </select>
           </label>
-          <label htmlFor="status" className="block my-5">
+          <label htmlFor='status' className='block my-5'>
             Status:
-            <div className="ml-2">
+            <div className='ml-2'>
               <input
-                type="radio"
-                name="status"
-                value="active"
-                className="mr-1"
-                checked={status === "active"}
+                type='radio'
+                name='status'
+                value='active'
+                className='mr-1'
+                checked={status === 'active'}
                 onChange={handleRadioChange}
               />
               Active
               <input
-                type="radio"
-                name="status"
-                value="skate-stopped"
-                className="ml-4 mr-1"
-                checked={status === "skate-stopped"}
+                type='radio'
+                name='status'
+                value='skate-stopped'
+                className='ml-4 mr-1'
+                checked={status === 'skate-stopped'}
                 onChange={handleRadioChange}
               />
               Skate-Stopped
               <input
-                type="radio"
-                name="status"
-                value="rip"
-                className="ml-4 mr-1"
-                checked={status === "rip"}
+                type='radio'
+                name='status'
+                value='rip'
+                className='ml-4 mr-1'
+                checked={status === 'rip'}
                 onChange={handleRadioChange}
               />
               RIP
             </div>
           </label>
-          <label htmlFor="tags" className="block my-5">
+          <label htmlFor='tags' className='block my-5'>
             Tags:
             <div>
               <input
-                type="text"
+                type='text'
                 value={tag}
                 onChange={(e) => setTag(e.target.value)}
-                className="w-1/3 mx-2 p-1 focus:outline-none"
+                className='w-1/3 mx-2 p-1 focus:outline-none'
                 placeholder="Enter a tag and click 'Add Tag'..."
               />
               <button
-                className="py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md"
+                className='py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md'
                 onClick={handleAddTag}
               >
                 Add Tag
@@ -215,23 +215,23 @@ export default function AddSpot() {
             {tags.length > 0 ? (
               <DeletableTags tags={tags} handleDelete={handleDeleteTag} />
             ) : (
-              <p className="italic ml-5">
+              <p className='italic ml-5'>
                 No tags added. Add one or more, and they will appear here.
               </p>
             )}
           </div>
-          <label htmlFor="youtube-links" className="block my-5">
+          <label htmlFor='youtube-links' className='block my-5'>
             YouTube Links:
             <div>
               <input
-                type="text"
+                type='text'
                 value={youtubeLink}
                 onChange={(e) => setYoutubeLink(e.target.value)}
-                className="w-2/3 mx-2 p-1 focus:outline-none"
+                className='w-2/3 mx-2 p-1 focus:outline-none'
                 placeholder="Enter a YouTube link and click 'Add YouTube Link'..."
               />
               <button
-                className="py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md"
+                className='py-1 px-2 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black shadow-md'
                 onClick={handleAddYoutubeLink}
               >
                 Add YouTube Link
@@ -245,17 +245,17 @@ export default function AddSpot() {
                 handleDelete={handleDeleteYoutubeLink}
               />
             ) : (
-              <p className="ml-5 italic">
+              <p className='ml-5 italic'>
                 No YouTube links added. Add one or more, and they will appear
                 here.
               </p>
             )}
           </div>
-          <div className="w-1/12 mx-auto mt-8 mb-2">
+          <div className='w-1/12 mx-auto mt-8 mb-2'>
             <input
-              type="submit"
-              value="Add Spot"
-              className="mx-auto py-2 px-3 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black hover:cursor-pointer shadow-md text-lg"
+              type='submit'
+              value='Add Spot'
+              className='mx-auto py-2 px-3 bg-green-400 text-gray-900 rounded hover:bg-green-500 hover:text-black hover:cursor-pointer shadow-md text-lg'
             />
           </div>
         </form>

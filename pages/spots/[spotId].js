@@ -38,7 +38,9 @@ export default function SpotById() {
 
   const fetchSpotById = async () => {
     try {
-      const response = await fetch(`/api/spots/${router.query.spotId}`);
+      const response = await fetch(
+        `https://skate-spots-map-v2.vercel.app/api/spots/${router.query.spotId}`
+      );
       const matchingSpotObj = await response.json();
       setSpot(matchingSpotObj.spot);
       console.log(matchingSpot);
