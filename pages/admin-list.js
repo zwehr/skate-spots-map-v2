@@ -1,6 +1,6 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]";
-import Link from "next/link";
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+import Link from 'next/link';
 
 export default function AdminList(props) {
   if (props.session) {
@@ -9,16 +9,16 @@ export default function AdminList(props) {
       return (
         <>
           <h1>Admin List</h1>
-          <p className="text-center">Welcome, admin!</p>
+          <p className='text-center'>Welcome, admin!</p>
         </>
       );
     } else {
       return (
         <>
           <h1>Admin List</h1>
-          <p className="text-center">You're not an admin.</p>
-          <p className="text-center">
-            Go back to the <Link href="/map-main">map.</Link>
+          <p className='text-center'>You are not an admin.</p>
+          <p className='text-center'>
+            Go back to the <Link href='/map-main'>map.</Link>
           </p>
         </>
       );
@@ -27,9 +27,9 @@ export default function AdminList(props) {
     return (
       <>
         <h1>Admin List</h1>
-        <p className="text-center">You're not logged in.</p>
-        <p className="text-center">
-          <Link href="/login">Log in</Link> and try again.
+        <p className='text-center'>You are not logged in.</p>
+        <p className='text-center'>
+          <Link href='/login'>Log in</Link> and try again.
         </p>
       </>
     );
